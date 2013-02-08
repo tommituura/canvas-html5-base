@@ -3,12 +3,12 @@
 window.requestAnimFrame = (function() {
 	return window.requestAnimationFrame   ||
 	   window.webkitRequestAnimationFrame || 
-       window.mozRequestAnimationFrame    || 
-       window.oRequestAnimationFrame      || 
-       window.msRequestAnimationFrame     || 
-       function(callback, element){
-           window.setTimeout(callback, 1000 / 60);
-       };
+	   window.mozRequestAnimationFrame    || 
+	   window.oRequestAnimationFrame      || 
+	   window.msRequestAnimationFrame     || 
+	   function(callback, element){
+	       window.setTimeout(callback, 1000 / 60);
+	   };
 })();
 
 game.engine = {};
@@ -38,14 +38,14 @@ game.engine.main = (function() {
 	var timerDebug = false;
 
 	var frameNum = 0;
-    var frametime = {
-        start: null,
-        prev: null,
-        now: null,
-        current: null,
-        sum: 0,
-        maxVal: 0
-    };
+	var frametime = {
+		start: null,
+		prev: null,
+		now: null,
+		current: null,
+		sum: 0,
+		maxVal: 0
+	};
 
 	var debug = function(debugging) {
 		if (typeof debugging!=='boolean') { timerDebug = !timerDebug; } 
@@ -61,23 +61,23 @@ game.engine.main = (function() {
 	}
 
 	var tick = function() {
-        frametime.start = new Date().valueOf();
+		frametime.start = new Date().valueOf();
 		
 		currentMode.tick();
 		currentMode.draw();
 
 		frameNum++;
-        if (frameNum > 59) {
-        	if (timerDebug) { console.log('Average % of allowed time used by frames:', frametime.sum/60, '\nHighest % of allowed time used by a frame:', frametime.maxVal); }
-            frameNum = 0;
-            frametime.sum = 0;
-            frametime.maxVal = 0;
-        }
-        frametime.prev = frametime.now;
-        frametime.now = new Date().valueOf();
-        frametime.current = ((frametime.now - frametime.start)/(frametime.now - frametime.prev) * 100);
-        frametime.sum = frametime.sum + frametime.current;
-        if (frametime.current > frametime.maxVal) { frametime.maxVal = frametime.current; }
+		if (frameNum > 59) {
+			if (timerDebug) { console.log('Average % of allowed time used by frames:', frametime.sum/60, '\nHighest % of allowed time used by a frame:', frametime.maxVal); }
+			frameNum = 0;
+			frametime.sum = 0;
+			frametime.maxVal = 0;
+		}
+		frametime.prev = frametime.now;
+		frametime.now = new Date().valueOf();
+		frametime.current = ((frametime.now - frametime.start)/(frametime.now - frametime.prev) * 100);
+		frametime.sum = frametime.sum + frametime.current;
+		if (frametime.current > frametime.maxVal) { frametime.maxVal = frametime.current; }
 		requestAnimFrame(game.engine.main.tick);
 	}
 

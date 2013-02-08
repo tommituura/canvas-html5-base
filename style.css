@@ -3,8 +3,6 @@ body {
 }
 
 #mycanvas {
-	width: 640;
-	height: 480;
 	border: 1px solid black;
 }
 

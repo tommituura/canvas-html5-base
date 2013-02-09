@@ -15,13 +15,19 @@ game.engine = {};
 
 game.engine.startScreen = (function() {
 	var frames = 0;
+	var x = 200;
+	var y = 200;
+
 	var tick = function() {
 		frames++;
+		var move = game.controls.getMovement();
+		x += move[0];
+		y += move[1];
 	};
 	var draw = function() {
 		game.ctx.clearRect(0,0,game.ctx.canvas.width,game.ctx.canvas.height);
 		game.ctx.fillStyle = "20pt Arial Sans-serif";
-		game.ctx.fillText("Start Screen: " + frames,200,200);
+		game.ctx.fillText("Start Screen: " + frames,x,y);
 	};
 
 	return {
@@ -34,11 +40,14 @@ game.engine.gameScreen = (function() {
 	var frames = 0;
 	var tick = function() {
 		frames++;
+		var move = game.controls.getMovement();
+		x += move[0];
+		y += move[1];
 	};
 	var draw = function() {
 		game.ctx.clearRect(0,0,game.ctx.canvas.width,game.ctx.canvas.height);
 		game.ctx.fillStyle = "20pt Arial Sans-serif";
-		game.ctx.fillText("Game Screen: " + frames,200,200);
+		game.ctx.fillText("Game Screen: " + frames,x,y);
 	};
 
 	return {

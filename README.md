@@ -1,4 +1,4 @@
 canvas-html5-base
 =================
 
-A base of index.html, code.js and style.css
+A forkable base of HTML5 stuff that can be used as a basis for canvas 2d games. 

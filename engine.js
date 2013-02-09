@@ -14,8 +14,15 @@ window.requestAnimFrame = (function() {
 game.engine = {};
 
 game.engine.startScreen = (function() {
-	var tick = function() {};
-	var draw = function() {};
+	var frames = 0;
+	var tick = function() {
+		frames++;
+	};
+	var draw = function() {
+		game.ctx.clearRect(0,0,game.ctx.canvas.width,game.ctx.canvas.height);
+		game.ctx.fillStyle = "20pt Arial Sans-serif";
+		game.ctx.fillText("Start Screen: " + frames,200,200);
+	};
 
 	return {
 		tick: tick,
@@ -24,8 +31,15 @@ game.engine.startScreen = (function() {
 })();
 
 game.engine.gameScreen = (function() {
-	var tick = function() {};
-	var draw = function() {};
+	var frames = 0;
+	var tick = function() {
+		frames++;
+	};
+	var draw = function() {
+		game.ctx.clearRect(0,0,game.ctx.canvas.width,game.ctx.canvas.height);
+		game.ctx.fillStyle = "20pt Arial Sans-serif";
+		game.ctx.fillText("Game Screen: " + frames,200,200);
+	};
 
 	return {
 		tick: tick,

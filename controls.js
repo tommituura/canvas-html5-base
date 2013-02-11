@@ -56,12 +56,12 @@ game.controls = (function() {
     }
     function getDeltaMovement(speed) {
         var movement = getMovement();
-        if (typeof speed!=='number' || speed <= 0) {
+        if (typeof speed!=='number') {
             return movement;
         } else {
             if(movement[0]!==0 && movement[1]!==0) {
-                movement[0] = movement[0] * speed * 0.707;
-                movement[1] = movement[1] * speed * 0.707; 
+                movement[0] = movement[0] * speed * 0.707; // No need to run Math.cos(Math.PI * 0.25) 
+                movement[1] = movement[1] * speed * 0.707; // every single time, it's always approx. 0.707 !
             } else {
                 movement[0] = movement[0] * speed;
                 movement[1] = movement[1] * speed;

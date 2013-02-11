@@ -54,6 +54,21 @@ game.controls = (function() {
         anykey = false;
         return movement;
     }
+    function getDeltaMovement(speed) {
+        var movement = getMovement();
+        if (typeof speed!=='number' || speed <= 0) {
+            return movement;
+        } else {
+            if(movement[0]!==0 && movement[1]!==0) {
+                movement[0] = movement[0] * speed * 0.707;
+                movement[1] = movement[1] * speed * 0.707; 
+            } else {
+                movement[0] = movement[0] * speed;
+                movement[1] = movement[1] * speed;
+            }
+            return movement;
+        }
+    }
 
 
     function mouseclick(mouseEvent) {
@@ -119,6 +134,7 @@ game.controls = (function() {
             mouseout: mouseout
         }, 
         getMovement: getMovement,
+        getDeltaMovement: getDeltaMovement,
         getCursorPos: getCursorPos,
         getClick: getClick,
         getClickPos: getClickPos,

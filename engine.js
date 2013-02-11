@@ -42,7 +42,7 @@ game.engine.gameScreen = (function() {
     var y = 200;
     var tick = function() {
         frames++;
-        var move = game.controls.getMovement();
+        var move = game.controls.getDeltaMovement(3);
         x += move[0];
         y += move[1];
     };

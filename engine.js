@@ -14,21 +14,21 @@ window.requestAnimFrame = (function () {
 game.engine = {};
 
 game.engine.startScreen = (function () {
-    var frames = 0, x = 200, y = 200, tick = null, draw = null;
+    var frames = 0, x = 200, y = 200;
 
-    tick = function () {
+    function tick() {
         var move = null;
 
         frames = frames + 1;
         move = game.controls.getMovement();
         x += move[0];
         y += move[1];
-    };
-    draw = function () {
+    }
+    function draw() {
         game.ctx.clearRect(0, 0, game.ctx.canvas.width, game.ctx.canvas.height);
         game.ctx.fillStyle = "20pt Arial Sans-serif";
         game.ctx.fillText("Start Screen: " + frames, x, y);
-    };
+    }
 
     return {
         tick: tick,
@@ -37,21 +37,21 @@ game.engine.startScreen = (function () {
 }());
 
 game.engine.gameScreen = (function () {
-    var frames = 0, x = 200, y = 200, tick = null, draw = null;
+    var frames = 0, x = 200, y = 200;
 
-    tick = function () {
+    function tick() {
         var move = null;
 
         frames = frames + 1;
         move = game.controls.getMovement();
         x += move[0];
         y += move[1];
-    };
-    draw = function () {
+    }
+    function draw() {
         game.ctx.clearRect(0, 0, game.ctx.canvas.width, game.ctx.canvas.height);
         game.ctx.fillStyle = "20pt Arial Sans-serif";
         game.ctx.fillText("Game Screen: " + frames, x, y);
-    };
+    }
 
     return {
         tick: tick,
@@ -60,7 +60,7 @@ game.engine.gameScreen = (function () {
 }());
 
 game.engine.main = (function () {
-    var currentMode = game.engine.startScreen, timerDebug = false, frameNum = 0, debug = null, state = null, tick = null, frametime = null;
+    var currentMode = game.engine.startScreen, timerDebug = false, frameNum = 0, frametime = null;
 
     frametime = {
         start: null,
@@ -71,23 +71,23 @@ game.engine.main = (function () {
         maxVal: 0
     };
 
-    debug = function (debugging) {
+    function debug(debugging) {
         if (typeof debugging !== 'boolean') {
             timerDebug = !timerDebug;
         } else {
             timerDebug = debugging;
         }
-    };
+    }
 
-    state = function (state) {
-        if (state === "game") {
+    function state(newState) {
+        if (newState === "game") {
             currentMode = game.engine.gameScreen;
         } else {
             currentMode = game.engine.startScreen;
         }
-    };
+    }
 
-    tick = function () {
+    function tick() {
         frametime.start = new Date().valueOf();
 
         currentMode.tick();
@@ -108,7 +108,7 @@ game.engine.main = (function () {
         frametime.sum = frametime.sum + frametime.current;
         if (frametime.current > frametime.maxVal) { frametime.maxVal = frametime.current; }
         window.requestAnimFrame(game.engine.main.tick);
-    };
+    }
 
     return {
         debug: debug,

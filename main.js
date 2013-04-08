@@ -3,10 +3,10 @@
 window.onload = function() {
     game.ctx = document.getElementById('mycanvas').getContext('2d');
 
-    $(document).keydown(function(event) {
+    $(document).bind('keydown', function(event) {
         game.controls.handlers.keydown(event);
     });
-    $(document).keyup(function(eventInformation) {
+    $(document).bind('keyup', function(event) {
         game.controls.handlers.keyup(event);
     });
     $('#mycanvas').mousedown(function(event) {

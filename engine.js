@@ -26,7 +26,7 @@ game.engine.startScreen = (function () {
     }
     function draw() {
         game.ctx.clearRect(0, 0, game.ctx.canvas.width, game.ctx.canvas.height);
-        game.ctx.fillStyle = "20pt Arial Sans-serif";
+        game.ctx.fillStyle = "#000 20pt Arial Sans-serif";
         game.ctx.fillText("Start Screen: " + frames, x, y);
     }
 
